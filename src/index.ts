@@ -24,7 +24,7 @@ const authMiddleware = async (req: RoutifyRequest, res: RoutifyResponse, next: (
 // 3. Test Routes
 
 // Basic GET route
-app.get('/api/hello', async (req: RoutifyRequest, res: RoutifyResponse) => {
+app.get('/api/testingroutify', async (req: RoutifyRequest, res: RoutifyResponse) => {
   res.json({ message: 'Testing Routify!' });
 });
 
@@ -51,7 +51,7 @@ app.post('/api/users', async (req: RoutifyRequest, res: RoutifyResponse,) => {
 app.start(() => {
   console.log('\nTest the API with these commands:\n');
   console.log('1. Basic GET request:');
-  console.log('curl http://localhost:3000/api/hello');
+  console.log('curl http://localhost:3000/api/testingroutify');
   
   console.log('\n2. GET request with params (will fail without auth):');
   console.log('curl http://localhost:3000/api/users/123');
@@ -60,5 +60,5 @@ app.start(() => {
   console.log('curl -H "Authorization: Bearer token" http://localhost:3000/api/users/123');
   
   console.log('\n4. POST request with body:');
-  console.log('curl -X POST -H "Content-Type: application/json" -d \'{"name":"John"}\' http://localhost:3000/api/users');
+  console.log('curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"Les\"}" http://localhost:3000/api/users');
 });
