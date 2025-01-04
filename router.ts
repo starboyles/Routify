@@ -49,7 +49,28 @@ export class Routify {
     return this.addRoute('DELETE', path, handler, middleware);
   }
 
+  //extract query params
+  private extractParams(routePath: string, requestPath: string): Record<string, string> | null {
+    const routeParts = routePath.split('/');
+    const requestParts = requestPath.split('/');
 
+    if (routeParts.length !== requestParts.length) {
+      return null;
+    }
+
+    const params: Record<string, string> = {};
+
+    for (let i=0; i < routeParts.length; i++) {
+      if (routeParts[i].startsWith(':')) {
+        const paramName = routeParts[i].slice(1);
+        params[paramName] = requestParts[i];
+      } else if (routeParts[i] !== requestParts[i]) {
+        return null;
+      }
+    }
+    return params;
+  }
+  
 
 
 
