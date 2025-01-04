@@ -29,4 +29,9 @@ export class RoutifyRequest {
   get method(): string {
     return this.req.method || "GET";
   }
+  
+  //getter for url
+  get pathname(): string {
+    return this.url.pathname;
+  }
 }
