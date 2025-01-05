@@ -14,3 +14,7 @@ At the moment, Routify has support for these:
 * 📦 Zero dependencies
 * 🛡️ Built-in error handling
 * 🔄 Automatic body parsing for `POST`/`PUT`/`PATCH`
+
+## Installation
+
+Routify is still under construction, so no possibility of `npm` installation, at the moment. ⚠️
