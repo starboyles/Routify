@@ -176,8 +176,8 @@ const authMiddleware = async (req, res, next) => {
 };
 
 app
-  .get('/api/hello', async (req, res) => {
-    res.json({ message: 'Hello World!' });
+  .get('/api/testingroutify', async (req, res) => {
+    res.json({ message: 'Testing Routify!' });
   })
   .get('/api/users/:id', 
     authMiddleware,
