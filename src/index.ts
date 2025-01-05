@@ -37,6 +37,15 @@ app.get('/api/users/:id',
   }
 );
 
+app.get('/api/search', async (req: RoutifyRequest, res: RoutifyResponse) => {
+  const { q, sort } = req.query;
+  res.json({ 
+    message: 'Search results',
+    searchTerm: q,
+    sortOrder: sort
+  });
+});
+
 // POST route with body parsing
 app.post('/api/users', async (req: RoutifyRequest, res: RoutifyResponse,) => {
   await req.parseBody();
@@ -55,6 +64,9 @@ app.start(() => {
   
   console.log('\n2. GET request with params (will fail without auth):');
   console.log('curl http://localhost:3000/api/users/123');
+
+  console.log('\n5. Test query parameters:');
+  console.log('curl "http://localhost:3000/api/search?q=typescript&sort=desc"');
   
   console.log('\n3. GET request with auth:');
   console.log('curl -H "Authorization: Bearer token" http://localhost:3000/api/users/123');
