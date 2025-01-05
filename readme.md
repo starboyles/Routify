@@ -25,9 +25,9 @@ npm install routify
 ```
 ## Quick Start
 ```javascript
-import { Routify } from './src/router';
+import { Routify } from 'routify';
 
-const app = new Routify(3000); // Port is optional, defaults to 3000
+const app = new Routify(3000); // Port optional, defaults at 3000
 
 // Global middleware example
 app.use(async (req, res, next) => {
@@ -57,6 +57,30 @@ app.get('/api/users/:id',
 );
 
 app.start(() => {
-  console.log('🚀 Routify is running on port 3000');
+  console.log('🐎 Routify is running on port 3000');
 });
+```
+
+## API Reference
+### Creating a Router
+
+```javascript
+import { Routify } from 'routify';
+const app = new Routify();
+```
+## Middleware Support
+
+```javascript
+// Global middleware
+app.use(async (req, res, next) => {
+  // Middleware logic
+  await next();
+});
+
+// Route-specific middleware
+app.get('/path', 
+  middleware1,
+  middleware2,
+  handler
+);
 ```
