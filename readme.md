@@ -137,6 +137,8 @@ app.get('/api/search', async (req, res) => {
 ```
 
 ### Body Parsing
+Automatic body parsing for POST/PUT/PATCH requests:
+
 ```typescript
 app.post('/api/users', async (req, res) => {
   await req.parseBody();
@@ -159,4 +161,36 @@ app.use(async (req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+```
+
+### Examples
+Basic REST API With Auth:
+```typescript
+const authMiddleware = async (req, res, next) => {
+  const token = req.getHeader('Authorization');
+  if (!token) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return;
+  }
+  await next();
+};
+
+app
+  .get('/api/hello', async (req, res) => {
+    res.json({ message: 'Hello World!' });
+  })
+  .get('/api/users/:id', 
+    authMiddleware,
+    async (req, res) => {
+      const { id } = req.params;
+      res.json({ userId: id, data: 'User data here' });
+    }
+  )
+  .post('/api/users', async (req, res) => {
+    await req.parseBody();
+    res.status(201).json({ 
+      message: 'User created', 
+      user: req.body 
+    });
+  });
 ```
