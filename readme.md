@@ -164,7 +164,7 @@ app.use(async (req, res, next) => {
 ```
 
 ### Examples
-Basic REST API With Auth:
+Basic `REST API` With Auth:
 ```typescript
 const authMiddleware = async (req, res, next) => {
   const token = req.getHeader('Authorization');
@@ -197,4 +197,5 @@ app
 ---
 **Contributions?** Please feel free to submit a Pull Request. Check out our contributing guidelines for more information.
 
+---
 **Happy Routing With Routify! 🐎**
