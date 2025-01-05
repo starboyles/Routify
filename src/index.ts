@@ -65,12 +65,12 @@ app.start(() => {
   console.log('\n2. GET request with params (will fail without auth):');
   console.log('curl http://localhost:3000/api/users/123');
 
-  console.log('\n5. Test query parameters:');
+  console.log('\n3. Test query parameters:');
   console.log('curl "http://localhost:3000/api/search?q=typescript&sort=desc"');
   
-  console.log('\n3. GET request with auth:');
+  console.log('\n4. GET request with auth:');
   console.log('curl -H "Authorization: Bearer token" http://localhost:3000/api/users/123');
   
-  console.log('\n4. POST request with body:');
+  console.log('\n5. POST request with body:');
   console.log('curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"Les\"}" http://localhost:3000/api/users');
 });
