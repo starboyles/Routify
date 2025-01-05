@@ -18,13 +18,13 @@ At the moment, Routify has support for these:
 
 ## Installation
 
-Routify is still under construction, so no possibility of `npm` installation, at the moment. ⚠️
+⚠️ Routify is still under construction, so no possibility of `npm` installation, at the moment. 
 
 ```bash
 npm install routify
 ```
 ## Quick Start
-```javascript
+```typescript
 import { Routify } from 'routify';
 
 const app = new Routify(3000); // Port optional, defaults at 3000
@@ -64,13 +64,13 @@ app.start(() => {
 ## API Reference
 ### Creating a Router
 
-```javascript
+```typescript
 import { Routify } from 'routify';
 const app = new Routify();
 ```
-## Middleware Support
+### Middleware Support
 
-```javascript
+```typescript
 // Global middleware
 app.use(async (req, res, next) => {
   // Middleware logic
@@ -83,4 +83,12 @@ app.get('/path',
   middleware2,
   handler
 );
+```
+
+### Route Methods
+```typescript
+app.get(path: string, ...handlers: (RouteHandler | Middleware)[]);
+app.post(path: string, ...handlers: (RouteHandler | Middleware)[]);
+app.put(path: string, ...handlers: (RouteHandler | Middleware)[]);
+app.delete(path: string, ...handlers: (RouteHandler | Middleware)[]);
 ```
