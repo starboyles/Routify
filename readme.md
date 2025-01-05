@@ -11,10 +11,52 @@ At the moment, Routify has support for these:
 * ⚡️ Async/await support
 * 🎨 Clean, chainable API
 * 🔍 URL parameter parsing
+* 🔄 Automatic body parsing for `POST`/`PUT`/`PATCH`
 * 📦 Zero dependencies
 * 🛡️ Built-in error handling
-* 🔄 Automatic body parsing for `POST`/`PUT`/`PATCH`
+
 
 ## Installation
 
 Routify is still under construction, so no possibility of `npm` installation, at the moment. ⚠️
+
+```bash
+npm install routify
+```
+## Quick Start
+```javascript
+import { Routify } from './src/router';
+
+const app = new Routify(3000); // Port is optional, defaults to 3000
+
+// Global middleware example
+app.use(async (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.pathname}`);
+  await next();
+});
+
+// Routes with middleware
+app.get('/api/testingroutify', async (req, res) => {
+  res.json({ message: 'Testing Routify!' });
+});
+
+app.get('/api/users/:id', 
+  // Route-specific middleware
+  async (req, res, next) => {
+    const token = req.getHeader('Authorization');
+    if (!token) {
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
+    }
+    await next();
+  },
+  async (req, res) => {
+    const { id } = req.params;
+    res.json({ userId: id });
+  }
+);
+
+app.start(() => {
+  console.log('🚀 Routify is running on port 3000');
+});
+```
