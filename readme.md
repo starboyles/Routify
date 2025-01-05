@@ -62,7 +62,7 @@ app.start(() => {
 ```
 
 ## API Reference
-### Creating a Router
+### Creating a Router:
 
 ```typescript
 import { Routify } from 'routify';
