@@ -92,3 +92,71 @@ app.post(path: string, ...handlers: (RouteHandler | Middleware)[]);
 app.put(path: string, ...handlers: (RouteHandler | Middleware)[]);
 app.delete(path: string, ...handlers: (RouteHandler | Middleware)[]);
 ```
+### Request Object
+```typescript
+interface RoutifyRequest {
+  params: Record<string, string>;    // URL parameters
+  query: Record<string, string>;     // Query string parameters
+  body: any;                         // Parsed request body
+  parseBody(): Promise<void>;        // Parse request body
+  getHeader(name: string): string | undefined;
+  method: string;
+  pathname: string;
+}
+```
+
+### Response Object
+```typescript
+interface RoutifyResponse {
+  status(code: number): RoutifyResponse;
+  json(data: any): void;
+  send(data: string): void;
+  setHeader(name: string, value: string): RoutifyResponse;
+}
+```
+
+### URL Parameters
+
+Support for URL parameters using `:param` syntax:
+```typescript
+app.get('/api/users/:id', async (req, res) => {
+  const { id } = req.params;
+  res.json({ userId: id });
+});
+```
+
+### Query Parameters
+
+Query parameters are automatically parsed and accessible via `req.query`:
+```typescript
+// GET /api/search?q=test&sort=desc
+app.get('/api/search', async (req, res) => {
+  const { q, sort } = req.query;
+  res.json({ searchTerm: q, sortOrder: sort });
+});
+```
+
+### Body Parsing
+```typescript
+app.post('/api/users', async (req, res) => {
+  await req.parseBody();
+  const userData = req.body;
+  res.status(201).json({ 
+    message: 'User created', 
+    user: userData 
+  });
+});
+```
+
+### Error Handling
+Comprehensive error handling for both middlewares and routes:
+```typescript
+// Global error handling middleware
+app.use(async (req, res, next) => {
+  try {
+    await next();
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+```
