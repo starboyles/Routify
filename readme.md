@@ -68,7 +68,7 @@ app.start(() => {
 import { Routify } from 'routify';
 const app = new Routify();
 ```
-### Middleware Support
+### Middleware Support:
 
 ```typescript
 // Global middleware
@@ -85,14 +85,14 @@ app.get('/path',
 );
 ```
 
-### Route Methods
+### Route Methods:
 ```typescript
 app.get(path: string, ...handlers: (RouteHandler | Middleware)[]);
 app.post(path: string, ...handlers: (RouteHandler | Middleware)[]);
 app.put(path: string, ...handlers: (RouteHandler | Middleware)[]);
 app.delete(path: string, ...handlers: (RouteHandler | Middleware)[]);
 ```
-### Request Object
+### Request Object:
 ```typescript
 interface RoutifyRequest {
   params: Record<string, string>;    // URL parameters
@@ -105,7 +105,7 @@ interface RoutifyRequest {
 }
 ```
 
-### Response Object
+### Response Object:
 ```typescript
 interface RoutifyResponse {
   status(code: number): RoutifyResponse;
@@ -115,7 +115,7 @@ interface RoutifyResponse {
 }
 ```
 
-### URL Parameters
+### URL Parameters:
 
 Support for URL parameters using `:param` syntax:
 ```typescript
@@ -125,7 +125,7 @@ app.get('/api/users/:id', async (req, res) => {
 });
 ```
 
-### Query Parameters
+### Query Parameters:
 
 Query parameters are automatically parsed and accessible via `req.query`:
 ```typescript
@@ -136,8 +136,8 @@ app.get('/api/search', async (req, res) => {
 });
 ```
 
-### Body Parsing
-Automatic body parsing for POST/PUT/PATCH requests:
+### Body Parsing:
+Automatic body parsing for `POST`/`PUT`/`PATCH` requests:
 
 ```typescript
 app.post('/api/users', async (req, res) => {
