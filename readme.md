@@ -195,6 +195,6 @@ app
   });
 ```
 ---
-Contributions? Please feel free to submit a Pull Request. Check out our contributing guidelines for more information.
+**Contributions?** Please feel free to submit a Pull Request. Check out our contributing guidelines for more information.
 
-Happy Routing With Routify! 🐎
+**Happy Routing With Routify! 🐎**
