@@ -13,4 +13,4 @@ At the moment, Routify has support for these:
 * 🔍 URL parameter parsing
 * 📦 Zero dependencies
 * 🛡️ Built-in error handling
-* 🔄 Automatic body parsing for POST/PUT/PATCH
+* 🔄 Automatic body parsing for `POST`/`PUT`/`PATCH`
