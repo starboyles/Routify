@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "chalk": "^5.4.1",
     "figlet": "^1.8.0",
     "typescript": "^5.7.2"
   },
