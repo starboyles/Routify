@@ -1,7 +1,6 @@
 import { Routify } from './router';
 import { RoutifyRequest } from "./request";
 import { RoutifyResponse } from "./response";
-import { Middleware } from './types';
 
 const app = new Routify(3000);
 
@@ -58,6 +57,7 @@ app.post('/api/users', async (req: RoutifyRequest, res: RoutifyResponse,) => {
 
 // Start the server
 app.start(() => {
+  
   console.log('\nTest the API with these commands:\n');
   console.log('1. Basic GET request:');
   console.log('curl http://localhost:3000/api/testingroutify');
